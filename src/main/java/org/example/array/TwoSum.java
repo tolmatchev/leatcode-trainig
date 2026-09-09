@@ -52,9 +52,6 @@ public class TwoSum {
                     result[0] = mapNums.get(nums[i]);
                     result[1] = i;
                     return result;
-                } else {
-                    mapNums.remove(nums[i]);
-                    continue;
                 }
             }
             mapNums.put(nums[i], i);
@@ -65,6 +62,22 @@ public class TwoSum {
                 result[1] = mapNums.get(integer);
             }
         }
+        return result;
+    }
+
+    public int[] twoSum2(int[] nums, int target) {
+        Map<Integer, Integer> mapNums = new HashMap<>();
+        int[] result = new int[2];
+        for (int i = 0; i < nums.length; i++) {
+            int complement = target - nums[i];
+            if (mapNums.containsKey(complement)) {
+                result[0] = mapNums.get(complement);
+                result[1] = i;
+                return result;
+            }
+            mapNums.put(nums[i], i);
+        }
+
         return result;
     }
 }
