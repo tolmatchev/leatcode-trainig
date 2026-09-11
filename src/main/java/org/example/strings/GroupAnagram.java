@@ -2,6 +2,42 @@ package org.example.strings;
 
 import java.util.*;
 
+/*
+Given an array of strings strs, group the anagrams together. You can return the answer in any order.
+
+
+
+Example 1:
+
+Input: strs = ["eat","tea","tan","ate","nat","bat"]
+
+Output: [["bat"],["nat","tan"],["ate","eat","tea"]]
+
+Explanation:
+
+There is no string in strs that can be rearranged to form "bat".
+The strings "nat" and "tan" are anagrams as they can be rearranged to form each other.
+The strings "ate", "eat", and "tea" are anagrams as they can be rearranged to form each other.
+Example 2:
+
+Input: strs = [""]
+
+Output: [[""]]
+
+Example 3:
+
+Input: strs = ["a"]
+
+Output: [["a"]]
+
+
+
+Constraints:
+
+1 <= strs.length <= 104
+0 <= strs[i].length <= 100
+strs[i] consists of lowercase English letters.
+ */
 public class GroupAnagram {
 
 
@@ -31,12 +67,11 @@ public class GroupAnagram {
         List<List<String>> resultList = new ArrayList<>();
         mapCounter.forEach((key, value) -> {
             List<String> tempStr = new ArrayList<>();
-            for(int i = 0; i < value.size(); i++) {
+            for (int i = 0; i < value.size(); i++) {
                 tempStr.add(strs[value.get(i)]);
             }
             resultList.add(tempStr);
         });
-
 
 
         return resultList;
@@ -73,9 +108,7 @@ public class GroupAnagram {
             for (char c : str.toCharArray()) {
                 tempMap.put(c, tempMap.getOrDefault(c, 0) + 1);
             }
-            mapCounter
-                    .computeIfAbsent(tempMap, k -> new ArrayList<>())
-                    .add(str);
+            mapCounter.computeIfAbsent(tempMap, k -> new ArrayList<>()).add(str);
         }
         return mapCounter.values().stream().toList();
     }
